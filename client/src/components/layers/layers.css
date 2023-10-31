@@ -1,0 +1,32 @@
+.Layer {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 450px;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.Color {
+    display: flex;
+    width: 80px;
+    height: 100px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #9B8354;
+    align-items: flex-end;
+    justify-content: center;
+    color: white
+}
+
+.RoundButtons {
+    width: 23px;
+    height: 23px;
+    border-radius: 100%;
+}
+
+.AddLayer {
+    display: flex;
+    justify-content: center;
+    width: 450px;
+}

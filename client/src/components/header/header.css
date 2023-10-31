@@ -4,5 +4,11 @@
 }
 
 .navbar {
-    background-color: #B5ABA1;
+    background: #B5ABA1;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 63px;
+    flex-shrink: 0;
 }

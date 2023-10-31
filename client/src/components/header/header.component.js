@@ -1,6 +1,7 @@
 // filename: header.component.js
 // author: Miles-Berry
 import './header.css'
+import logo from '../../imgs/SIREWALL-logo-200.png'
 
 export default function Header() {
     return (
@@ -10,7 +11,7 @@ export default function Header() {
 
             <div className='logo'>
                 <img 
-                src=".../imgs/SIREWALL-logo-200.png"
+                src={logo}
                 alt="SIREWALL"/>
             </div>
 
