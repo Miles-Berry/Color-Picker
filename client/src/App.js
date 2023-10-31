@@ -8,6 +8,7 @@ import Layers from './components/layers/layers.component.js'
 import Tile from './components/tile/tile.component.js'
 
 import { colorData } from './colorData'
+import { layerData } from './layerData'
 
 
 
@@ -38,30 +39,6 @@ const App = () => {
 
   */
 
-  /* 
-  Default Layer Setup
-  */
-  var layers = [{
-    selectedColor: {
-      name: 'Eiger',
-      hex: '#C7C5C5',
-      r: 197,
-      g: 197,
-      b: 197,
-      a: 1
-    },
-    intensity: 2
-  },{
-    selectedColor: {
-      name: 'Eiger',
-      hex: '#C7C5C5',
-      r: 197,
-      g: 197,
-      b: 197,
-      a: 1
-    },
-    intensity: 3
-  }] 
 
 
   return (
@@ -75,7 +52,7 @@ const App = () => {
         <div className="BodyLeft">
           <Tile/>
           <Layers
-            layers={layers}
+            layerData={layerData}
             selectedLayer={selectedLayer}
           />
         </div>

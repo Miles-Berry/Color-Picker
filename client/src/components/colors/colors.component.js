@@ -7,18 +7,18 @@ export default function Colors({colorData}) {
     /* 
             Look to database for colors
     */
-    const colors = colorData.map(c => 
+    const colors = colorData.map(color => 
         <div 
             className='color'
             style={{
-                backgroundColor: c.color.hex,
+                backgroundColor: color.hex,
                 width: "80px",
                 height: "100px",
                 margin: "10px"
             }}
         >
             <div className='colorName'>
-                {c.name}
+                {color.name}
             </div>
         </div>
     );

@@ -2,55 +2,45 @@
 // author: Miles-Berry
 import './layers.css'
 
-export default function Layers({layers, selectedLayer}) {
+export default function Layers({ layerData, selectedLayer }) {
     
-    return (
-    <div>
-
-        {/* 
-            Check if there are previously made layers
-
-            If so, load those
-
-            Else, default to 4
-
-        */
-        }
-
-        
-
-
-
-
+    const layers = layerData.map (layer => 
         <div className="Layer">
-            <button className="Color">
-                test
-            </button>
-            
-            <button className="RoundButtons">
-                0
-            </button>
-            <button className="RoundButtons">
+
+            <div 
+                className="Color"
+                style={{
+                    background: layer.color.hex
+                }}
+            >
+                {layer.color.name}
+            </div>
+            <div className="IntensityButtons">
                 1
-            </button>
-            <button className="RoundButtons">
+            </div>
+            <div className="IntensityButtons">
                 2
-            </button>
-            <button className="RoundButtons">
+            </div>
+            <div className="IntensityButtons">
                 3
-            </button>
-            <button className="RoundButtons">
+            </div>
+            <div className="DeleteButtons">
                 X
-            </button>
-            
+            </div>
+        </div>
+    );
+
+    return (
+        <div>
+
+            {layers}
+
+            <div className="AddLayer">
+                <div>
+                    Add Layer
+                </div>
             </div>
 
-        <div className="AddLayer">
-            <button>
-                Add Layer
-            </button>
-        </div>
-        
-    </div>
+        </div> 
     )
 }
