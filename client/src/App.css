@@ -1,6 +1,7 @@
 .Body {
     display: flex;
     justify-content: center;
+    height: 110%;
 }
 
 .BodyLeft{
@@ -10,5 +11,117 @@
 
 .BodyRight{
     margin: 1%;
+}
+
+.AddLayer {
+    display: flex;
+    justify-content: center;
+    width: 450px;
+}
+
+.Colors{
+    width: 630px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.Color{
+    border-radius: 4px;
+    margin: auto;
+    height: 100px;
+    width: 80px;
+    margin: 10px;
+}
+
+.colorName {
+    color: #ffffff;
+    font-size: 10px;
+    padding: 3px;
+}
+
+.HighlightColor {
+    width: 90px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: lightblue
+}
+
+.NoHighlightColor {
+    width: 90px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: transparent;
+}
+
+.Layer {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 450px;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.HighlightLayer {
+    width: 90px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: lightblue
+}
+
+.NoHighlightLayer {
+    width: 90px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: transparent;
+}
+
+.IntensityButtonHighlight {
+    width: 23px;
+    height: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    border-radius: 100%;
+    background-color: #b4efee;
+    color: white;
+}
+
+.IntensityButtonNoHighlight {
+    width: 23px;
+    height: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    border-radius: 100%;
+    background-color: #e1e1e1;
+    color: white;
+}
+
+.DeleteButton {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    border-radius: 100%;
+    background-color: #393737;
+    color: grey;
+    opacity: 50%;
 }
 

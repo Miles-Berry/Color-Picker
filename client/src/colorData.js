@@ -14,6 +14,13 @@
 
 
 export const colorData = [{
+    name: 'Eiger',
+    hex: '#C7C5C5',
+    r: 197,
+    g: 197,
+    b: 197,
+    a: 1
+}, {
     name: 'Ras Dashen',
     hex: '#9B9675',
     r: 155, 
