@@ -112,6 +112,32 @@
     color: white;
 }
 
+.Tile {
+    width: 450px;
+    height: 450px;
+}
+
+.Buttons {
+    display: flex;
+    width: 450px;
+    justify-content: center;
+}
+
+.Export {
+    width: 120px;
+    height: 36px;
+    background: #710D02;
+    border-radius: 4px;
+    flex-shrink: 0;
+    color: #EDC421;
+    font-family: Open Sans;
+    font-size: 15px;
+    font-style: normal;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .DeleteButton {
     width: 30px;
     height: 30px;

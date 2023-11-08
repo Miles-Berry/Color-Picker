@@ -2,13 +2,14 @@ import './App.css';
 
 import { useState } from 'react';
 
-import Header from './components/header/header.component.js'
-//import Color from './components/color/color.component.js'
-//import Layer from './components/layer/layer.component.js'
-import Tile from './components/tile/tile.component.js'
+import Header from './components/header/header.component.js';
+import Tile from './components/tile/tile.component';
+import { colorData } from './colorData';
+import { layerData } from './layerData';
 
-import { colorData } from './colorData'
-import { layerData } from './layerData'
+import Jimp from "jimp";
+
+import image from './imgs/SIREWALL-tile.jpg';
 
 const App = () => {
   
@@ -133,7 +134,6 @@ const App = () => {
 
   /* Colors */
 
-
   function ColorMenu() {
 
     const ColorOptions = colorData.map(color =>
@@ -155,9 +155,19 @@ const App = () => {
     )
   }
 
+  /* IMAGE */
+  const [img, setImg] = useState(image);
+
+  Jimp.read(image, (err, img) => {
+    if (err) throw err;
+    img.greyscale().getBase64(Jimp.AUTO, (err, res) => {
+      setImg(res);
+    });
+  });
+
   
 
-
+  /* App */
 
   return (
     <div className="App">
@@ -192,6 +202,17 @@ const App = () => {
           
         </div>
       </div>
+      <img 
+        className="image"
+        src={image}
+        alt="Original"
+        style={{width: '450px', height: '450px'}}
+      />
+      <img 
+        className="transformedImage"
+        src={img}
+        alt="Transformed"
+      />
           
     </div>
   );
