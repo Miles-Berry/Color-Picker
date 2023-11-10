@@ -3,7 +3,7 @@ import './App.css';
 import { useState } from 'react';
 
 import Header from './components/header/header.component.js';
-import Tile from './components/tile/tile.component';
+//import Tile from './components/tile/tile.component';
 import { colorData } from './colorData';
 import { layerData } from './layerData';
 
@@ -13,7 +13,7 @@ import image from './imgs/SIREWALL-tile.jpg';
 
 const App = () => {
   
-  const [ selectedColor, setSelectedColor ] = useState("Eiger");
+  const [ selectedColor, setSelectedColor ] = useState(colorData[0]);
 
   /* Layers */
   const [layers, setLayers] = useState(layerData);
@@ -79,7 +79,8 @@ const App = () => {
       if (layer.id === selectedLayer) {layer.color = color};
       return layer;
     });
-    setSelectedColor(color.name);
+    setSelectedColor(color);
+    modifyImage();
     return [...newLayers]
   }
 
@@ -137,7 +138,7 @@ const App = () => {
   function ColorMenu() {
 
     const ColorOptions = colorData.map(color =>
-      <div className={selectedColor === color.name ? "HighlightColor" : "NoHighlightColor"}> 
+      <div className={selectedColor === color? "HighlightColor" : "NoHighlightColor"}> 
         <div 
           className='Color'
           key={color.name}
@@ -158,12 +159,56 @@ const App = () => {
   /* IMAGE */
   const [img, setImg] = useState(image);
 
+  var differenceMap = [];
+  for (var i = 0; i < 1182; i++) {
+    differenceMap[i] = [];
+    for (var j = 0; j < 1182; j++) {
+        differenceMap[i][j] = {
+          r: 0,
+          g: 0,
+          b: 0
+        };
+    }
+  }
+
   Jimp.read(image, (err, img) => {
-    if (err) throw err;
-    img.greyscale().getBase64(Jimp.AUTO, (err, res) => {
-      setImg(res);
+    if (err) {throw err};
+    var avgR = 127;
+    var avgG = 127;
+    var avgB = 127;
+    img.greyscale()
+    // find avg color in image
+    img.scan(0, 0, img.bitmap.width, img.bitmap.height, function(x, y, idx) {
+      avgR = (avgR + this.bitmap.data[idx+0])/2;
+      avgG = (avgG + this.bitmap.data[idx+1])/2;
+      avgB = (avgB + this.bitmap.data[idx+2])/2;
+    });
+    // find difference of that pixel from avg color
+    img.scan(0, 0, img.bitmap.width, img.bitmap.height, function(x, y, idx) {
+      differenceMap[x][y] = {
+        r: avgR - this.bitmap.data[idx+0],
+        g: avgG - this.bitmap.data[idx+1],
+        b: avgB - this.bitmap.data[idx+2]
+      }
     });
   });
+  
+  function modifyImage() {
+    Jimp.read(image, (err, img) => {
+      if (err) {throw err};
+      var img2 = img.clone();
+      img2.greyscale();
+
+      img2.scan(0, 0, img.bitmap.width, img.bitmap.height, function (x, y, idx) {
+        this.bitmap.data[idx+0] = selectedColor.r - differenceMap[x][y].r;
+        this.bitmap.data[idx+1] = selectedColor.g - differenceMap[x][y].g;
+        this.bitmap.data[idx+2] = selectedColor.b - differenceMap[x][y].b;
+      }).getBase64(Jimp.AUTO, (err, res) => {
+        if (err) {throw err};
+        setImg(res);
+      });
+    })
+  };
 
   
 
@@ -181,8 +226,12 @@ const App = () => {
         <div className="BodyLeft">
           
           {/* Render Tile */}
-          <Tile/>
-          
+          <img
+            className="tile"
+            src={img}
+            style={{width: '450px', height: '450px'}}
+            alt='tile'
+          />         
           {/* Render Layers */}
           {Layers}
 
@@ -202,18 +251,6 @@ const App = () => {
           
         </div>
       </div>
-      <img 
-        className="image"
-        src={image}
-        alt="Original"
-        style={{width: '450px', height: '450px'}}
-      />
-      <img 
-        className="transformedImage"
-        src={img}
-        alt="Transformed"
-      />
-          
     </div>
   );
 }
